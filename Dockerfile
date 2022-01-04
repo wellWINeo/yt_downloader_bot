@@ -2,9 +2,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /source
 
-COPY ./* ./
+COPY *.csproj .
 RUN dotnet restore
 
+COPY ./* ./
 RUN dotnet publish -c release -o /app --no-restore
 
 # runtime
@@ -14,7 +15,6 @@ COPY --from=build /app ./
 
 RUN apt-get update && apt-get install -y ffmpeg
 
-# ENV ASPNETCORE_URLS="http://*:$PORT"
 ENV ASPNETCORE_ENVIRONMENT=Production
 
-ENTRYPOINT [ "dotnet", "yt_downloader_bot.dll" ]
+CMD ASPNETCORE_URLS="http://*:$PORT" ./yt_downloader_bot

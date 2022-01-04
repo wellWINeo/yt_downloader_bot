@@ -117,6 +117,11 @@ public class HandleUpdateService
             {
                 await bot.SendTextMessageAsync(chatId: message.Chat.Id, "Can't send video(");
             }
+            finally
+            {
+                // delete video
+                System.IO.File.Delete(path);
+            }
         }
 
         // handler for /help command
