@@ -17,3 +17,6 @@ services:
       ]
     secrets:
       - TelegramYouTubeBotToken
+secrets:
+  TelegramYouTubeBotToken:
+    external: true
