@@ -32,4 +32,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: $CONTAINER_REGISTRY/yt_downloader_bot:${{ steps.parser.outputs.version }}
+          tags: ${{ env.CONTAINER_REGISTRY }}/yt_downloader_bot:${{ steps.parser.outputs.version }}
