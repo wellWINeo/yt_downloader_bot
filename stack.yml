@@ -8,11 +8,10 @@ services:
       - 9001:80
     environment:
       - PORT=80
-      - TokenSecret=${token}
       - BotConfig__Host=${host}
     entrypoint:
       [
         "/bin/sh",
         "-c",
-        "export BotConfig__Token=$$(cat /$TokenSecret) ; source /entrypoint.sh",
+        "export BotConfig__Token=$$(cat /run/secrets/TelegramYouTubeBotToken) ; source /entrypoint.sh",
       ]
