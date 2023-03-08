@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   bot:
-    image: registry.dev-1.uspenskiy.su:443/yt_downloader_bot:1.0.1
+    image: registry.dev-1.uspenskiy.su:443/yt_downloader_bot:1.0.2
     restart: always
     ports:
       - 9001:80
