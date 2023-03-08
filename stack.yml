@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   bot:
@@ -8,5 +8,11 @@ services:
       - 9001:80
     environment:
       - PORT=80
-      - BotConfig__Token=${token}
+      - TokenSecret=${token}
       - BotConfig__Host=${host}
+    entrypoint:
+      [
+        "/bin/sh",
+        "-c",
+        "export BotConfig__Token=$$(cat /var/run/secrets/TokenSecret) ; source /entrypoint.sh",
+      ]
