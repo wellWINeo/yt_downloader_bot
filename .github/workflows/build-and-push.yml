@@ -40,3 +40,5 @@ jobs:
           context: .
           push: true
           tags: ${{ vars.CONTAINER_REGISTRY }}/yt_downloader_bot:${{ steps.parser.outputs.version }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
