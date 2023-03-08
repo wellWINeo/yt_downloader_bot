@@ -13,5 +13,5 @@ services:
       [
         "/bin/sh",
         "-c",
-        "export BotConfig__Token=$$(cat /run/secrets/TelegramYouTubeBotToken) ; . /entrypoint.sh",
+        "export BotConfig__Token=$$(cat /run/secrets/TelegramYouTubeBotToken)",
       ]
