@@ -14,5 +14,5 @@ services:
       [
         "/bin/sh",
         "-c",
-        "export BotConfig__Token=$$(cat /run/secrets/TokenSecret) ; source /entrypoint.sh",
+        "export BotConfig__Token=$$(cat /$TokenSecret) ; source /entrypoint.sh",
       ]
