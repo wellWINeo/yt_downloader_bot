@@ -8,3 +8,5 @@ services:
       - 9001:80
     environment:
       - PORT=80
+      - BotConfig__Token=${token}
+      - BotConfig__Host=${host}
