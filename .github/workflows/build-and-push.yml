@@ -1,0 +1,35 @@
+name: Build and Push Image
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Retrieve version
+        id: parser
+        run: echo version=$(awk -F '[<>]' '/Version/{print $3}' yt_downloader_bot.csproj | head -n 1) >> $GITHUB_OUTPUT
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: amd64,arm64
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: network=host
+      -
+        name: Build and push to local registry
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: $CONTAINER_REGISTRY/yt_downloader_bot:${{ steps.parser.outputs.version }}
