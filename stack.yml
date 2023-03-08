@@ -7,13 +7,13 @@ services:
     ports:
       - 9001:80
     environment:
-      - PORT=80
+      - ASPNETCORE_URLS=http://*:80
       - BotConfig__Host=${host}
     entrypoint:
       [
         "/bin/sh",
         "-c",
-        "export BotConfig__Token=$$(cat /run/secrets/TelegramYouTubeBotToken); ./entrypoint.sh",
+        "export BotConfig__Token=$$(cat /run/secrets/TelegramYouTubeBotToken); ./yt_downloader_bot",
       ]
     secrets:
       - TelegramYouTubeBotToken
