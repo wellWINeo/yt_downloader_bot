@@ -6,7 +6,8 @@ on:
       - "main"
 
 jobs:
-  docker:
+  build:
+    name: Build and push
     runs-on: ubuntu-latest
     steps:
       -
@@ -42,3 +43,12 @@ jobs:
           tags: ${{ vars.CONTAINER_REGISTRY }}/yt_downloader_bot:${{ steps.parser.outputs.version }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Invoke portainer webhook
+        run: curl -x POST ${{ vars.PORTAINER_WEBHOOK }}
