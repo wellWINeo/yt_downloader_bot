@@ -51,4 +51,4 @@ jobs:
     steps:
       - 
         name: Invoke portainer webhook
-        run: curl -x POST ${{ vars.PORTAINER_WEBHOOK }}
+        run: curl -X POST ${{ vars.PORTAINER_WEBHOOK }}
